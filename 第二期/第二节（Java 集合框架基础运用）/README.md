@@ -30,12 +30,9 @@ public interface Collection<E> extends Iterable<E> {
       add 
                * @throws UnsupportedOperationException  不能添加
      * @throws ClassCastException  
-     * @throws NullPointerException if the specified element is null and this
-     *         collection does not permit null elements
-     * @throws IllegalArgumentException if some property of the element
-     *         prevents it from being added to this collection
-     * @throws IllegalStateException if the element cannot be added at this
-     *         time due to insertion restrictions
+     * @throws NullPointerException  null
+     * @throws IllegalArgumentException   实体中id为null
+     * @throws IllegalStateException   id 不为小于零 但传入的Id 为-1
           
           
           remove
@@ -104,6 +101,26 @@ ListAndSetDemo.java
 
 • java.util.Queue（since Java 1.5）(单项列表）
 
+```java
+public interface Queue<E> extends Collection<E> {
+      boolean add(E e);  //与collection中的add 语义发生了变化
+     boolean offer(E e); //使用offer
+    poll 取出 不移除
+        peek 只取
+    
+}
+```
+
+```
+Queue<String> qe = new LinkedList<>();
+List<String> list = new LinkedList<>();
+Deque<String> dqe = new LinkedList<>();
+```
+
+
+
+
+
 • java.util.Deque（since Java 1.6）（双向列表）
 
 linkedList实现deque
@@ -112,7 +129,7 @@ linkedList实现deque
 
 为什么继承在Collection<E>接口
 
-还要在写一遍 add
+还要在写一遍 add         不能写 poll方法就没意义了
 
 ###### 并发接⼝
 
@@ -123,6 +140,10 @@ linkedList实现deque
 ##### Map
 
 ###### 通⽤用接⼝
+
+
+
+MapAndSetDemo
 
 • java.util.SortedMap
 • java.util.NavigableMap（since Java 1.6）
@@ -176,6 +197,12 @@ boundedMap (有边界的Map)
 
 
 
+
+
+
+
+
+
 #### • General-purpose implementations（通⽤用实现）
 
 运用范围
@@ -195,6 +222,27 @@ ArrayList
 Vector
 
 HashTable
+
+
+java.util.Vector
+
+Vector   ArrayList
+
+>       // Vector 数组实现，对比 ArrayList，实现了 List
+>         // Vector 所有操作线程安全的，使用关键字“synchronized”修饰
+>         Vector<String> vector = new Vector<>();
+>         List<String> list = new ArrayList<>();
+>         // 如果 Vector 在方法内部使用的话， synchronized 修饰后的方法基本上没有线程同步的消耗
+>         vector.add("A");
+>         list.add("A");
+
+java.util.Stack
+
+    // Vector 是 FIFO
+        // Stack 是 LIFO，是 Vector 的子类
+java.util.Hashtable
+java.util.Enumeration
+java.util.BitSet
 
 
 
